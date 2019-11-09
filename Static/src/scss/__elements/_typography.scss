@@ -1,0 +1,20 @@
+/*------------------------------------------
+ Typography
+-------------------------------------------*/
+
+html {
+	-webkit-font-smoothing: antialiased;
+	-ms-text-size-adjust: 100%;
+  	-webkit-text-size-adjust: 100%;
+}
+
+%banner-heading,
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	$color: $text-heading;
+}
+
+%body,
+p, ul, ol, li {
+	$color: $text-body;
+}

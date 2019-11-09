@@ -1,0 +1,346 @@
+.ev-explorer {
+
+	$evex: &;
+
+	&__quiz-cta {
+		width: 100%;
+
+		@include breakpoint($medium) {
+			width: calc(100% - #{rem(10)});
+		}
+	}
+	&__quiz-cta--wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: spacing-inside('sm') 0;
+		flex-direction: column;
+
+		@include breakpoint($medium) {
+			flex-direction: row;
+			padding: spacing-inside('md') 0;
+		}
+
+		.btn-primary {
+			margin-bottom: 0;
+			font-weight: 400;
+			letter-spacing: rem(1);
+		}
+		
+	}
+	&__cta-content {
+		margin: rem(10) 0;
+		padding: 0 spacing-inside('sm');
+		text-align: center;
+		font-size: rem(14);
+		color: #3bb2bc;
+
+		@include breakpoint($medium) {
+			margin: 0;
+			text-align: left;
+		}
+
+		strong {
+			font-size: rem(20);
+		}
+
+		p {
+			margin: 0 0 rem(6) 0;
+		}
+	}
+
+	[data-splash="true"] {
+		background: gray;
+		background-size: cover;
+		background-position: left center;
+
+		background-image: image('ev-explorer-cover.jpg'); 
+
+		@include breakpoint($medium) {
+			background-position: center;
+		}
+		@include breakpoint($large) { 
+			background-position: top center;
+		}
+	}
+	&__splash {
+		text-align: center;
+		padding: spacing-outside(lg) 0;
+		min-height: 100%;
+		// overflow: hidden;
+
+		@include breakpoint($medium) {
+			min-height: 0;
+			padding: spacing-outside(xxlg) 0;
+		}
+
+		&, h3 {
+			color: $white;
+		}
+	}
+	&__intro {
+		font-size: rem(60);
+		line-height: rem(57);
+		margin: 0 0 rem(30);
+		font-weight: 300;
+		text-shadow: 0 0 10px  rgba(0,0,0,0.5);
+	}
+	&__blurb {
+		font-size: rem(20);
+		font-weight: 500;
+		max-width: 400px;
+		margin: 0 auto rem(30);
+		text-shadow: 0 0 10px rgba(0,0,0,0.5);
+	}
+
+	&__progress-bar {
+		// padding: 0 rem(15);
+		background: $white;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
+	&__progress-fill {
+		// margin: 0 rem(-15);
+		height: 6px;
+		background: linear-gradient(270deg, #3bb2bc 0%, darken(#3bb2bc, 10%) 100%);
+		position: relative;
+
+		.ev-explorer__progress-empty {
+			content: '';
+			height: 6px;
+			width: 100%; // start progress bar at zero
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			transition: width 0.33s cubic-bezier(0.57, -0.02, 0.71, 0.76);
+			background: #eee;
+		}
+
+	}
+	
+	&__fieldset {
+		margin: 0;
+		// padding: 0;
+		outline: 0;
+		border: 0;
+		background: none;
+	}
+	&__question {
+		font-size: rem(22);
+		margin-bottom: spacing-inside(xs);
+	}
+	&__answers {
+		display: flex;
+		width: calc(100% + #{rem(10)});
+		flex-wrap: wrap;
+		// justify-content: space-between;
+		margin: 0 rem(-5);
+	}
+	&__item {
+		display: inline-block;
+		width: 100%;
+		&[data-style="threeup"] {
+			margin: 0 rem(2.5) rem(5);
+			width: calc(50% - #{rem(5)});
+			
+			@include breakpoint($large) {
+				margin: 0 rem(5) rem(10);
+				width: calc(33.33% - #{rem(10)});
+			}
+			
+		}
+		&[data-style="fiveup"] {
+			margin: 0 rem(5) rem(10);
+			width: calc(50% - #{rem(10)});
+
+			@include breakpoint($medium) {
+				width: calc(33.33% - #{rem(10)});
+			}
+			@include breakpoint($large) {
+				width: calc(20% - #{rem(10)});
+			}
+		}
+	}
+	&__remaining-count {
+		position: absolute;
+		bottom: spacing-inside('xxs');
+		right: spacing-inside('xxs');
+
+		font-size: rem(11);
+		
+		@include breakpoint($medium) {
+			bottom: calc(#{spacing-inside('xs')} + 1px);
+		}
+
+		@at-root #{$evex}__simple-input & {
+			bottom: calc(#{spacing-inside('xs')} + 3px);
+
+			@include breakpoint($medium) {
+				bottom: calc(#{spacing-inside('xs')} + 5px);
+			}
+		}
+	}
+	&__answer-check {
+		position: absolute;
+		width: rem(14);
+		height: rem(15);
+		bottom: spacing-inside('xxs');
+		left: spacing-inside('xxs');
+		fill: $white;
+		
+		@include breakpoint($medium) {
+			bottom: spacing-inside('xs');
+		}
+	}
+
+	label {
+		&.ev-explorer__label {
+			margin: 0;
+			font-size: rem(12);
+			color: inherit;
+			position: relative;
+			
+			@include breakpoint($medium) {
+				font-size: rem(14);
+			}
+		}
+	}
+	
+	&__option-icon {
+		width: rem(95);
+		height: rem(50);
+		display: block;
+		margin: 0 auto rem(20);
+		fill: $charcoal;
+
+		@at-root [data-selected="true"] & {
+			fill: $white;
+		}
+	}
+
+	// &__text-label {
+	// 	font-size: rem(12);
+	// 	@include breakpoint($medium) {
+	// 		font-size: rem(14);
+	// 	}
+
+	// }
+
+	&__simple-input,
+	&__threeup-input,
+	&__fiveup-input {
+		$block: &;
+
+		background: $white;
+
+		&[data-selected="true"] {
+			background: #3bb2bc;
+			color: $white;
+		}
+		label { 
+			display: block;
+		}
+
+		&--disabled {
+			opacity: 0.6;
+		}
+	}
+	&__simple-input {
+		margin: 0 0 rem(5);
+		padding: 0 spacing-inside('xxs'); 
+		width: 100%;
+
+		input + label {
+			padding-top: spacing-inside('xs');
+			padding-bottom: spacing-inside('xs');
+		}
+
+		input[type="checkbox"] + label::after {
+			top: calc(#{spacing-inside('xs')} + 7px); 
+		}
+	}
+	&__threeup-input,
+	&__fiveup-input {
+		// width: 30%;
+		// display: block;
+		text-align: center;
+
+		label {
+			padding: spacing-inside('xxs');
+
+			@include breakpoint($medium) {
+				padding: spacing-inside('xs');
+			}
+		}
+	}
+
+
+	&__nav {
+		// margin: rem(20) 0 0;
+		text-align: right;
+	}
+	&__total-count {
+		margin-bottom: spacing-inside(md);
+		font-size: rem(12);
+		font-weight: 300;
+	}
+	&__next,
+	&__skip {
+		display: inline-block;
+		min-width: 0;
+		width: calc(50% - #{rem(2.5)});
+		padding-left: rem(20);
+		padding-right: rem(20);
+	}
+	&__next {
+		border: 1px solid #3bb2bc;
+	}
+
+	&__start {
+		font-weight: 400;
+	}
+
+	&__complete {
+		text-align: center;
+	}
+	&__complete-title {
+		// @extend .h2;
+		font-weight: 300;
+		margin-bottom: spacing-inside(xs);
+	}
+	&__car-illo {
+		max-width: 300px;
+		margin: 0 auto spacing-inside(sm);
+	}
+
+	&__save {
+		margin-top: spacing-outside(lg);
+	}
+
+
+	// Modal tweaks
+	// &[role="document"] {
+	// 	position: relative;
+	// }
+	// .modal-header {
+	// 	position: relative;
+	// }
+
+	// .modal-sticky-header {
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	height: 103px;
+	// }
+
+	// .modal-body {
+	// 	padding-top: 103px;
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	top: 103px;
+	// 	bottom: 103px;
+	// }
+
+	
+}

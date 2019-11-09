@@ -1,0 +1,35 @@
+/*------------------------------------------
+ Links
+-------------------------------------------*/
+.link {
+	display: inline-block;
+	margin-bottom: rem(20);
+	@include font-sizing(rem(14), rem(18), 400);
+
+	&--arrow {
+		text-transform: uppercase;
+		@include font-sizing(rem(12), rem(13), 700);
+		letter-spacing: rem(1);
+		> svg {
+			fill: lightblue;
+			height: rem(9);
+			width: rem(17);
+		}
+
+		&:hover,
+		&:focus {
+
+			> svg {
+				fill: dodgerblue;
+			}
+		}
+	}
+
+	&--text {
+		text-decoration: underline;
+	}
+}
+
+a {
+	color: lightblue;
+}

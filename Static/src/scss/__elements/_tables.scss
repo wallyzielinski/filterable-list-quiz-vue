@@ -1,0 +1,28 @@
+/*------------------------------------------
+ Tables
+-------------------------------------------*/
+
+.table-responsive {
+	width: 100%;
+	overflow: auto;
+
+	table {
+		width: auto;
+		border-collapse: collapse;
+	}
+
+	&--fixed {
+
+		table {
+			width: 100%;
+			table-layout: fixed;
+		}
+	}
+
+	&--full-width {
+
+		table {
+			width: 100%;
+		}
+	}
+}

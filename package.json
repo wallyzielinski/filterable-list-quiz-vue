@@ -1,0 +1,38 @@
+{
+  "name": "skeletor2k18",
+  "version": "0.3.0",
+  "description": "Set of Frontend Dev-focused build tools to streamline and maintain consistent code bases in fast-paced agency settings",
+  "author": "HERO_digital",
+  "browserslist": [
+    "last 3 versions",
+    "> .5%",
+    "Firefox ESR",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "breakpoint-sass": "^2.7.1",
+    "browser-sync": "^2.12.8",
+    "browsersync-ssi": "^0.2.4",
+    "cssnano": "^3.10.0",
+    "eslint": "^4.17.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-inline-svg": "1.0.x",
+    "gulp-svg-sprite": "^1.2.19",
+    "gulp-svgo": "^1.3.1",
+    "gulp-uglify": "^3.0.0",
+    "node-sass-globbing": "0.0.23",
+    "path": "^0.12.7",
+    "pump": "^3.0.0",
+    "sass-lint": "^1.12.1",
+    "uglify-js": "^3.3.9"
+  },
+  "dependencies": {
+    "gulp-cli": "^2.0.1",
+    "gulp-replace": "^1.0.0"
+  }
+}

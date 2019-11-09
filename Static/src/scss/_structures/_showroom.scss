@@ -1,0 +1,536 @@
+.showroom {
+	// margin: 0 auto;
+	// padding: rem(20) 0 0;
+	// max-width: 1200px;
+	min-height: 100vh;
+	background: #f6f6f6;
+	padding: rem(20) rem(20) 0;
+
+	@include breakpoint($medium) {
+		padding: rem(20) rem(30) 0;
+	}
+
+	@include breakpoint($large) {
+		padding: rem(40) rem(50) 0;
+	}
+
+	&--dashboard {
+		min-height: 0;
+		padding: 0;
+	}
+
+	&__loader {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		opacity: 1;
+		transition: opacity 0.5s ease-in-out;
+		transition-delay: 0.5s;
+		transform: translate(-50%,-50%);
+		@at-root .showroom--ready & {
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+
+	.flex-wrap {
+		display: flex;
+		width: 100%;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	&__personas,
+	// &__filter,
+	&__controls,
+	&__cars,
+	&__sidebar {
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+		transition-delay: 0.5s;
+
+		@at-root .vue--ready & {
+			opacity: 1;
+		}
+	}
+
+	&__personas {
+		margin: 0 rem(-20) rem(20);
+		padding: 0 rem(20);
+		width: calc(100% + #{rem(40)});
+		overflow-x: auto;
+		
+		.flex-wrap {
+			flex-wrap: nowrap;
+		}
+
+		@include breakpoint($medium) {
+			width: 100%;
+			padding: 0;
+			margin: 0 0 rem(20);
+		}
+	}
+	&__group {
+		// display: inline-block;
+		margin: 0 0 rem(6);
+		background-color: silver;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		width: calc(24% - 3px);
+		margin-right: rem(6);
+
+		min-width: calc(24% - 3px);
+		
+		
+		@include breakpoint($medium) {
+			min-width: 0;
+			width: calc(25% - 4px);
+			margin-bottom: rem(8);
+		}
+
+		@include breakpoint($large) {
+			margin-bottom: rem(20);
+		}
+
+		// &--budget {
+		// 	background-image: image('car-list-budget.jpg');
+		// }
+		// &--lux {
+		// 	background-image: image('car-list-luxury.jpg');
+		// }
+		// &--family {
+		// 	background-image: image('car-list-family.jpg');
+		// }
+		// &--commute {
+		// 	background-image: image('car-list-commuter.jpg');
+		// }
+		// &--your-matches {
+		// 	background-image: image('find-match-persona.jpg');
+		// }
+
+		&:last-child {
+			margin-right: 0;
+		}
+		
+		button {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			color: $white;
+			font-weight: 800;
+			text-transform: uppercase;
+			width: 100%; 
+			margin: 0;
+			cursor: pointer;
+			box-shadow: inset 0 0 0 0 #3bb2bc;
+			text-shadow: 0 0 20px rgba(0,0,0,0.5);
+			transition: box-shadow 0.25s ease-in-out;
+			padding: rem(20) rem(8);
+			font-size: rem(9);
+			min-height: rem(60);
+
+			@include breakpoint($medium) {
+				padding: rem(40) rem(10);
+				font-size: rem(16);
+				min-height: rem(120);
+			}
+			@include breakpoint($large) {
+				padding: rem(50) rem(10);
+			}
+
+			&.active {
+				&, &:hover {
+					box-shadow: inset 0 0 0 4px #3bb2bc;
+
+					@include breakpoint($medium) {
+						box-shadow: inset 0 0 0 6px #3bb2bc;
+					}
+				}
+				
+			}
+
+			&:focus {
+				outline: 2px solid #3bb2bc;
+			}
+
+			&:hover {
+				box-shadow: inset 0 0 0 3px #3bb2bc;
+			}
+		}
+	}
+
+	&__count,
+	&__controls {
+		display: block;
+		width: 100%;
+
+		button,
+		.select-wrap select {
+			height: rem(54);
+		}
+	}
+	&__count {
+		font-size: rem(17);
+		font-weight: 400;
+		justify-content: left;
+		line-height: 1.5;
+
+		@include breakpoint($medium) {
+			font-size: rem(20);
+			width: 25%;
+		}
+		
+	}
+	&__controls {
+		@include breakpoint($medium) {
+			width: 75%; 
+			text-align: right;
+		}
+
+		button {
+			text-transform: capitalize;
+			font-weight: 400;
+			font-size: rem(13);
+			padding-left: rem(25);
+			padding-right: rem(25);
+		}
+	}
+	&__filter-icon {
+		display: inline-block;
+		margin-left: rem(2);
+		margin-top: rem(-2);
+		width: rem(14);
+		height: rem(14);
+		vertical-align: middle;
+
+		svg {
+			fill: $charcoal;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__cars {
+		width: calc(75% - #{rem(15)});
+	}
+	&__sidebar {
+		width: calc(25% - #{rem(15)});
+	}
+
+	&__list ul {
+
+		@include reset-list();
+		display: flex;
+		flex-wrap: wrap;
+		margin: rem(10) rem(0);
+
+		@include breakpoint($medium) {
+			margin: rem(10) rem(-5);
+		}
+	}
+
+	&__vehicle {
+		display: block;
+		background: #fff;
+		margin: 0 0 rem(20);
+		width: 100%;
+
+		@include breakpoint($medium) {
+			margin: 0 rem(5) rem(10);
+			width: calc(50% - #{rem(10)});
+			@at-root .showroom--dashboard & {
+				width: calc(33.33% - #{rem(10)});
+			}
+		}
+		@include breakpoint($large) {
+			margin: 0 rem(5) rem(10);
+			width: calc(33.33% - #{rem(10)});
+		}
+
+		&[data-selected] {
+			outline: 5px solid #3bb2bc;
+			outline-offset: -5px;
+		}
+
+		&.transition {
+			transition: opacity 0.22s;
+		}
+	}
+	&__content {
+		position: relative;
+		padding: rem(30) rem(20);
+		margin: 0 auto;
+		color: gray;
+		font-size: rem(14);
+		transition: opacity 0.22s ease-in-out;
+
+		&--disabled {
+			opacity: 0.5;
+			pointer-events: none;
+		}
+
+		@include breakpoint($large) {
+			padding: rem(40) rem(30);
+			max-width: rem(450);
+		}
+	}
+
+	&__image {
+		position: relative;
+		height: 0;
+		overflow: hidden;
+		margin-bottom: rem(20);
+		padding-top: 54.5%;
+		
+		a {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		img {
+			width: 100%;
+			margin: 0;
+			display: block;
+			
+			&.transition {
+				transition: opacity 0.22s;
+			}
+		}
+
+		.ezev-tag {
+			position: absolute;
+			bottom: 0; left: 0;
+		}
+	}
+
+	&__heading {
+		position: relative;
+		padding-right: rem(30);
+	}
+	&__name {
+		padding: rem(5) 0;
+		display: inline-block;
+		margin: 0;
+		a {
+			color: $charcoal;
+			text-decoration: none;
+			@include font-sizing(rem(20), rem(20), 500);
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	&__icon {
+		display: inline-block;
+		position: absolute;
+		right: 0; top: 50%;
+		transform: translateY(-50%);
+	}
+
+	&__type-icon {
+		display: inline-block;
+		fill: #3bb2bc;
+		&--electric {
+			height: rem(17);
+			width: rem(12);
+		}
+		&--hybrid {
+			height: rem(17);
+			width: rem(10);
+		}
+	}
+	&__type {
+		margin-bottom: rem(20);
+		font-weight: 400;
+		font-size: rem(12);
+	}
+	
+	&__stats-table {
+		width: 100%;
+		border-collapse: collapse;
+
+		th, td {
+			padding-bottom: rem(12);
+		}
+		th {
+			font-weight: 300;
+			font-size: rem(12);
+			text-align: left;
+		}
+		td {
+			text-align: right;
+			font-weight: 600;
+			font-size: rem(14);
+			color: $charcoal;
+		}
+
+		tr:nth-last-child(2) {
+			th, td {
+				padding-bottom: rem(25);
+			}
+		}
+		tr:last-child {
+			th,td {
+				border-top: 1px solid gray;
+				padding-top: rem(25);
+				color: darkslategrey;
+				font-weight: 400;
+			}
+			td {
+				font-weight: 800;
+				font-size: rem(21);
+			}
+		}
+	}
+	
+
+	&__ctas {
+		position: fixed;
+		right: rem(10);
+		bottom: rem(20);
+		text-align: right;
+		z-index: 1;
+
+		@include breakpoint($medium) {
+			right: rem(20);
+			bottom: rem(20);
+		}
+	}
+	&__back-to-top {
+		background: rgba(gray, 0.9);
+		padding: rem(12) rem(13);
+
+		svg {
+			width: rem(16);
+			height: rem(12);
+			transform: rotate(180deg);
+			fill: $charcoal;
+		}
+
+		@include breakpoint($large) {
+			display: none;
+		}
+	}
+	&__compare-wrap {
+		background: $charcoal;
+		color: $white;
+		padding: rem(26);
+		width: 100%;
+		text-align: center;
+		@include font-sizing(rem(14), rem(18), 500);
+
+		position: fixed;
+		bottom: 0; left: 0; right: 0;
+		z-index: 5;
+
+		@include breakpoint($medium) {
+			@include font-sizing(rem(20), rem(26), 500);
+		}
+		button {
+			margin: rem(20) 0 0 rem(10);
+			max-width: initial;
+			min-width: 0;
+
+			@include breakpoint($medium) {
+				margin-top: 0;
+			}
+		}
+	}
+	// &__compare-cta {
+		// background: rgb(55, 190, 55);
+
+		// &:hover {
+		// 	background: rgb(42, 204, 42);
+		// }
+	// }
+
+	&__select-label {
+		color: $black;
+		font-size: rem(12);
+		font-weight: 500;
+	}
+
+	&__selected-filters {
+		margin-bottom: rem(20);
+
+		@include breakpoint($max-small) {
+			margin: 0 rem(-20) rem(20);
+			padding: 0 rem(20);
+			// white-space: pre;
+			max-width: calc(100% + #{rem(40)});
+			overflow-x: auto;
+
+			span, button {
+				white-space: nowrap;
+			}
+		}
+		
+	}
+	&__tag {
+		@include reset-button();
+		// border: 1px solid #999;
+		background: lightgray;
+		font-family: $font-body;
+		font-size: rem(12);
+		font-weight: 500;
+		display: inline-block;
+		padding: rem(8);
+		margin-right: rem(8);
+		margin-bottom: rem(8);
+		cursor: pointer;
+
+		transition: color 0.11s ease-in-out,
+					background 0.11s ease-in-out;
+
+		&:hover {
+			background: $charcoal;
+			color: $white;
+			svg {
+				fill: $white;
+			}
+		}
+	}
+	&__x-btn {
+		margin-left: rem(5);width: rem(10);
+		height: rem(10);
+		fill: $charcoal;
+		pointer-events: none;
+		transition: fill 0.11s ease-in-out;
+	}
+	&__x-all {
+		font-size: rem(12);
+		font-weight: 500;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__no-results {
+		width: 100%;
+		text-align: center;
+		margin: rem(30) 0;
+	}
+	&__none-title {
+		@include font-sizing(rem(30), rem(38), 300);
+		margin-bottom: rem(20);
+
+		@include breakpoint($medium) {
+			@include font-sizing(rem(40), rem(50), 300);
+		}
+	}
+	
+	&__load-more {
+		width: 100%;
+		padding: rem(40) 0;
+		button {
+			margin: 0 auto;
+			display: block;
+		}
+	}
+}

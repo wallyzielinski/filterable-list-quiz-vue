@@ -1,0 +1,323 @@
+/*------------------------------------------
+ Inputs
+-------------------------------------------*/
+
+%input {
+    display: inline-block;
+    position: relative;
+    padding: rem(16) rem(14);
+    padding-left: rem(16);
+    width: 100%;
+    max-width: 100%;
+    font-size: rem(14);
+    border: 1px solid silver;
+    border-radius: 0;
+    font-family: $font-body;
+    
+    transition: border 0.12s ease-in-out,
+                padding-left 0.12s ease-in-out;
+    
+    &:hover:enabled {
+        border-color: $black; 
+    }
+    
+    @if $print {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    @include breakpoint($medium) {
+        max-width: rem(335);
+    }
+}
+
+@include input_text_types() {
+    @extend %input;
+    &:focus {
+        outline: 0;
+        border-color: $black;
+        border-left: 3px solid $black;
+        padding-left: rem(14);
+    }
+    .js-focus-visible &:focus:not(.focus-visible) {
+        // outline: none !important;
+        padding-left: rem(16);
+        border-left: 1px solid $black;
+    }
+
+    &.error {
+        border-color: #3bb2bc;
+        background-color: pink;
+    }
+}
+
+.checkbox-wrap,
+.radio-wrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    // margin-bottom: rem(3); 
+    &--50-50 {
+        width: calc(50% - 5px);
+        &:nth-child(even) {
+            margin-right: 0;
+        }
+    }
+}
+
+input[type='checkbox'] {
+    $block: &;
+    @extend .vh;
+    &+label {
+        margin: 0 0 rem(18);
+        position: relative;
+        display: flex;
+        align-items: center;
+        z-index: 1;
+        // :before is empty check
+        &::before {
+            content: '';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: rem(10);
+            min-width: rem(20);
+            height: rem(20);
+            background: transparent;
+            border: 1px solid gray;
+            cursor: pointer;
+        }
+        // :after is checkmark
+        &::after {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 4px;
+            display: block;
+            width: rem(20);
+            height: rem(20);
+            // box-sizing: content-box;
+        }
+    }
+    &:checked+label {
+        &::before {
+            border-color: $black;
+            background: $black;
+            transition: border 350ms cubic-bezier(.4, .0, .23, 1),
+                        transform 350ms cubic-bezier(.4, .0, .23, 1);
+        }
+        &::after {
+            // border-color: $white;
+            border-right: 2px solid transparent;
+            border-bottom: 2px solid transparent;
+            transform: rotate(45deg);
+            transform-origin: 0% 100%;
+            animation: checkbox-check 250ms cubic-bezier(.4, .0, .23, 1) forwards;
+        }
+    }
+    
+	&:hover+label::before {
+        border-color: $black;
+    }
+	&:focus+label::before {
+		outline: 2px solid #3bb2bc;
+    }
+    .js-focus-visible &:focus:not(.focus-visible)+label::before {
+        outline: none !important;
+    }
+}
+
+input[type="radio"] {
+    @extend .vh;
+    &+label {
+        position: relative;
+        padding: rem(2) 0 0;
+        margin: 0 0 rem(18);
+        padding-left: rem(30);
+        display: flex;
+        align-items: center;
+        &::before {
+            content: '';
+            display: flex;
+            border-radius: 100%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px solid gray;
+            width: rem(20);
+            height: rem(20);
+            left: 0;
+            position: absolute;
+            box-shadow: inset 0 0 0 0px $white;
+            background: $white;
+        }
+    }
+
+    &:checked {
+        &+label {
+            &::before {
+                // transition: all .3s ease;
+                animation-duration: .33s;
+                animation-name: select-radio;
+                animation-iteration-count: 1;
+                animation-direction: normal;
+                box-shadow: inset 0 0 0 5px $black;
+                border-color: $black;
+            }
+        }
+    }
+    
+    &:hover+label::before {
+        border-color: $black;
+    }
+	&:focus+label::before {
+        outline: 2px solid #3bb2bc;
+        
+    }
+    .js-focus-visible &:focus:not(.focus-visible)+label::before {
+        outline: none !important;
+    }
+    
+}
+
+.select-wrap {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+
+    select {
+        @extend %input;
+        // padding: rem(17) rem(14);
+        // padding-left: rem(16);
+        margin-bottom: rem(15);
+        border-color: silver;
+        font-size: rem(13) !important;
+        font-weight: 700;
+        color: $charcoal;
+        line-height: rem(19);
+        padding: rem(15) rem(20);
+        appearance: none;
+        -webkit-appearance: none;
+        z-index: 1;
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        &::-ms-value {
+            background: $white;
+            color: $charcoal;
+        }
+
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            padding-bottom: rem(12); 
+        }
+
+        @include inline-svg($icon-dropdown, $charcoal);
+        background-color: $white;
+        background-position: calc(100% - 20px) center;
+        background-size: rem(17) rem(17);
+
+        @include breakpoint($medium) {
+            min-width: rem(220);
+        }
+
+        
+        &:enabled {
+            cursor: pointer;
+        }
+        &:focus {
+            font-size: rem(13) !important;
+        }
+        &:hover:enabled {
+            border: 1px solid gray;
+        }
+
+        &:disabled {
+            color: darkgray;
+            &:hover {
+                // border: 1px solid #3bb2bc;
+            }
+        }
+    }
+    &--inset-label {
+        select {
+            padding-top: rem(22);
+            padding-bottom: rem(11);
+            padding-right: rem(38); 
+            border-color: lightgray;
+            font-weight: 400;
+
+            & + label {
+                position: absolute;
+                top: rem(9); left: rem(22);
+                font-weight: 600;
+                font-size: rem(11);
+                line-height: rem(19);
+                margin: 0;
+                color: $charcoal;
+                z-index: 1;
+            }
+            
+            &:hover {
+                background-color: white;
+            }
+        }
+    }
+
+    &--form {
+        width: 100%;
+
+        select {
+            margin: 0;
+            padding: rem(16) rem(14);
+            border-color: silver;
+            @include font-sizing(rem(16), rem(19), 400);
+        }
+    }
+}
+
+fieldset {
+	border: 0;
+    // padding: rem(30) 0 rem(20);
+    padding: 0.01rem;
+    margin: 0 0 rem(5);
+    min-width: 0;
+    background: $white;
+    position: relative;
+}
+legend {
+	display: table;
+	font-size: rem(14);
+    margin: 0 0 rem(20);
+	padding: 0;
+    width: 100%;
+    
+    // position: absolute;
+	// top: 0; left: 0;
+
+	@at-root body:not(:-moz-handler-blocked) & {
+		display: table-cell;
+	}
+}
+
+label {
+    color: $charcoal;
+    font-size: rem(14);
+    font-weight: 300;
+    margin-bottom: rem(10);
+    cursor: pointer;
+}
+
+
+// fix for disabling zoom on iOS-based devices
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input,
+    select,
+    textarea,
+    select:focus,
+    textarea:focus,
+    input:focus {
+        font-size: rem(16) !important;
+    }
+}

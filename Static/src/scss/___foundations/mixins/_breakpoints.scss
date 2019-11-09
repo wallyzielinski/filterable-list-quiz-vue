@@ -1,0 +1,27 @@
+/*------------------------------------------
+ Breakpoints
+-------------------------------------------*/
+
+$breakpoints: (
+	small:  320px,  /* Smartphones --------------- */
+	medium: 768px,  /* Tablets Portrait ---------- */
+	large:  1224px, /* Desktops and laptops ------ */
+	xlarge: 1500px  /* Large screens ------------- */
+);
+
+$min-medium: map-get($breakpoints, medium);
+$min-large: map-get($breakpoints, large);
+$min-xlarge: map-get($breakpoints, xlarge);
+
+$max-small: map-get($breakpoints, medium)  - 1px;
+$max-medium: map-get($breakpoints, large)  - 1px;
+$max-large: map-get($breakpoints, xlarge)  - 1px;
+
+
+$small: map-get($breakpoints, small);
+$medium: $min-medium,'no-query' true;
+$large:  $min-large,'no-query' true;
+$xlarge:  $min-xlarge,'no-query' true;
+
+$full-width: 1500px;
+$content-width: 980px;

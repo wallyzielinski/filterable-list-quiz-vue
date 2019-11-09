@@ -1,0 +1,45 @@
+/*------------------------------------------
+ Spacing
+-------------------------------------------*/
+
+// DEFAULT PARTICLE SETTINGS, CAN BE ADJUSTED TO MATCH THE DESIGNS
+$vertical-base: 20px;
+
+// top & bottom padding on a column
+$vertical-col-space-small: 10px;
+$vertical-col-space-medium: 40px;
+$vertical-col-space-wide: 40px;
+$vertical-col-space-superwide: 40px;
+
+// left & right padding on a column
+$horizontal-col-space-small: 4px;
+$horizontal-col-space-medium: 20px;
+$horizontal-col-space-wide: 20px;
+$horizontal-col-space-superwide: 20px;
+
+// outside padding on the first and last colum of what appears as a row in the browser
+$outer-col-space-small: 20px;
+$outer-col-space-medium: 45px;
+$outer-col-space-wide: 50px;
+$outer-col-space-superwide: 130px;
+
+
+$spacing-sizes-outside: (
+  xxlg: 140,
+  xlg: 100,
+  lg: 50
+);
+@function spacing-outside($size, $scale: 1) {
+  @return rem( (map-get($spacing-sizes-outside, $size) * $scale) );
+}
+
+$spacing-sizes-inside: (
+  md: 70,
+  sm: 50,
+  xs: 25,
+  xxs: 20,
+  xxxs: 10
+);
+@function spacing-inside($size, $scale: 1) {
+  @return rem( (map-get($spacing-sizes-inside, $size) * $scale) );
+}

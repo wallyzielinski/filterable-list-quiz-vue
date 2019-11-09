@@ -1,0 +1,12 @@
+$icon-new-window: 'data:image/svg+xml,%3Csvg%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%207%207%22%3E%3Cpath%20fill%3D%22%23117eb0%22%20d%3D%22M6%200H3v1h2.24L1.7%204.54l.71.71L6%201.66V4h1V0H6z%22%2F%3E%3Cpath%20fill%3D%22%23adbccb%22%20d%3D%22M5%205v1H1V2h1V1H0v6h6V5H5z%22%2F%3E%3C%2Fsvg%3E' 0px 0px;
+
+@mixin inline-svg($name, $fill:'#000') {
+	$fill: to-string($fill);
+	$img: inline-svg-fill( nth($name, 1),$fill);
+	background: transparent url($img) no-repeat 50% 50%;
+	background-size: contain
+}
+
+@function inline-svg-fill($svg, $fill) {
+	@return str-replace($svg, '%3Csvg', '%3Csvg%20fill%3D%22#{url-encode($fill)}%22');
+}

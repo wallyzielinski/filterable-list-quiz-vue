@@ -1,0 +1,84 @@
+.comparison-chart {
+	min-width: rem(600);
+	margin-bottom:rem(30);
+
+	.spacer {
+
+		tr:only-child {
+
+			td {
+				padding-top: rem(2.5);
+				padding-bottom: rem(2.5);
+			}
+		}
+	}
+
+	tr {
+
+		&:first-child {
+
+			td, th {
+				padding-top: rem(40);
+			}
+		}
+
+		&:last-child {
+
+			td, th {
+				padding-bottom: rem(40);
+			}
+		}
+	}
+
+	td, th {
+		padding: rem(10) rem(30);
+		color: $charcoal;
+		background-color: $white;
+		text-align: left;
+		@include font-sizing(rem(14), rem(14), 300);
+
+		@include breakpoint($large) {
+			@include font-sizing(rem(16), rem(16), 300);
+		}
+
+		&:first-child {
+			padding: rem(10) rem(40);
+			@include font-sizing(rem(12), rem(14), 300);
+		}
+
+		&:empty {
+			background-color: transparent;
+		}
+	}
+
+	&__vehicle {
+		background-color: $white;
+		border-left: 3px solid #eee;
+		text-align: left;
+
+		img {
+			width: 100%;
+			height: auto;
+			margin-bottom: rem(10);
+		}
+
+		h4 {
+			margin-bottom: rem(5);
+		}
+
+		p {
+			@include font-sizing(rem(12), rem(14), 300);
+		}
+	}
+
+	&__total {
+
+		td, th {
+			font-weight: bold;
+
+			&:first-child {
+				@include font-sizing(rem(14), rem(18), 600);
+			}
+		}
+	}
+}

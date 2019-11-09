@@ -1,0 +1,390 @@
+/*------------------------------------------
+ Utilities
+-------------------------------------------*/
+
+// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-units($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+  
+    @return $number;
+}
+
+$base: 16;
+
+// Convert pixels to rems
+// eg. for a relational value of 12px write rem(12)
+// Assumes $em-base is the font-size of <html>
+@function rem($pxval) {
+    @if not unitless($pxval) {
+        $pxval: strip-units($pxval);
+    } 
+    @if not unitless($base) {
+        $base: strip-units($base);
+    }
+    @return ($pxval / $base) * 1rem;  
+}
+
+@mixin absolute($t, $r, $b, $l) {
+    top: $t;
+    right: $r;
+    bottom: $b;
+    left: $l;
+}
+
+
+// font-sizing shorthand mixin
+@mixin font-sizing($fsize, $lheight, $fweight: null) {
+	font-size: $fsize;
+	line-height: $lheight;
+
+	@if ($fweight) {
+		font-weight: $fweight;
+	} @else {
+		font-weight: 300;
+	}
+}
+
+/// Provides a quick method for targeting `border-radius` on both corners on the side of a box.
+///
+/// @param {Number} $radii
+///   List of arguments
+///
+/// @example scss - Usage
+///   .element-one {
+///     @include border-top-radius(5px);
+///   }
+///
+///   .element-two {
+///     @include border-left-radius(3px);
+///   }
+///
+/// @example css - CSS Output
+///   .element-one {
+///     border-top-left-radius: 5px;
+///     border-top-right-radius: 5px;
+///   }
+///
+///   .element-two {
+///     border-bottom-left-radius: 3px;
+///     border-top-left-radius: 3px;
+///   }
+///
+/// @output `border-radius`
+@mixin border-top-radius($radii) {
+    border-top-left-radius: $radii;
+    border-top-right-radius: $radii;
+}
+
+@mixin border-right-radius($radii) {
+    border-bottom-right-radius: $radii;
+    border-top-right-radius: $radii;
+}
+
+@mixin border-bottom-radius($radii) {
+    border-bottom-left-radius: $radii;
+    border-bottom-right-radius: $radii;
+}
+
+@mixin border-left-radius($radii) {
+    border-bottom-left-radius: $radii;
+    border-top-left-radius: $radii;
+}
+
+/// Provides an easy way to include a clearfix for containing floats.
+///
+/// @link http://cssmojo.com/latest_new_clearfix_so_far/
+///
+/// @example scss - Usage
+///   .element {
+///     @include clearfix;
+///   }
+///
+/// @example css - CSS Output
+///   .element::after {
+///     clear: both;
+///     content: "";
+///     display: table;
+///   }
+@mixin clearfix {
+    &::after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+@mixin triangle($size, $color, $direction) {
+    $width: nth($size, 1);
+    $height: nth($size, length($size));
+    $foreground-color: nth($color, 1);
+    $background-color: if(length($color)==2, nth($color, 2), transparent);
+    height: 0;
+    width: 0;
+    @if ($direction==up) or ($direction==down) or ($direction==right) or ($direction==left) {
+        $width: $width / 2;
+        $height: if(length($size) > 1, $height, $height/2);
+        @if $direction==up {
+            border-bottom: $height solid $foreground-color;
+            border-left: $width solid $background-color;
+            border-right: $width solid $background-color;
+        }
+        @else if $direction==right {
+            border-bottom: $width solid $background-color;
+            border-left: $height solid $foreground-color;
+            border-top: $width solid $background-color;
+        }
+        @else if $direction==down {
+            border-left: $width solid $background-color;
+            border-right: $width solid $background-color;
+            border-top: $height solid $foreground-color;
+        }
+        @else if $direction==left {
+            border-bottom: $width solid $background-color;
+            border-right: $height solid $foreground-color;
+            border-top: $width solid $background-color;
+        }
+    }
+    @else if ($direction==up-right) or ($direction==up-left) {
+        border-top: $height solid $foreground-color;
+        @if $direction==up-right {
+            border-left: $width solid $background-color;
+        }
+        @else if $direction==up-left {
+            border-right: $width solid $background-color;
+        }
+    }
+    @else if ($direction==down-right) or ($direction==down-left) {
+        border-bottom: $height solid $foreground-color;
+        @if $direction==down-right {
+            border-left: $width solid $background-color;
+        }
+        @else if $direction==down-left {
+            border-right: $width solid $background-color;
+        }
+    }
+    @else if ($direction==inset-up) {
+        border-color: $background-color $background-color $foreground-color;
+        border-style: solid;
+        border-width: $height $width;
+    }
+    @else if ($direction==inset-down) {
+        border-color: $foreground-color $background-color $background-color;
+        border-style: solid;
+        border-width: $height $width;
+    }
+    @else if ($direction==inset-right) {
+        border-color: $background-color $background-color $background-color $foreground-color;
+        border-style: solid;
+        border-width: $width $height;
+    }
+    @else if ($direction==inset-left) {
+        border-color: $background-color $foreground-color $background-color $background-color;
+        border-style: solid;
+        border-width: $width $height;
+    }
+}
+
+@mixin placeholder {
+	&::-moz-placeholder { @content; }
+	&::-webkit-input-placeholder { @content; }
+	&:-ms-input-placeholder { @content; }
+}
+
+@mixin input_text_types( $focus:false ) {
+	@if $focus {
+        input[type=text]:focus,
+        input[type=password]:focus,
+        input[type=search]:focus,
+        input[type=email]:focus,
+        input[type=url]:focus,
+        input[type=tel]:focus {
+            @content;
+        }
+	} @else {
+        input[type=text],
+        input[type=password],
+        input[type=search],
+        input[type=email],
+        input[type=url],
+        input[type=tel] {
+            @content;
+        }
+	}
+}
+
+@mixin reset-list {
+	margin: 0;
+	padding:0;
+	list-style: none;
+	li:before { display: none; }
+}
+
+@mixin reset-button {
+	-webkit-appearance: none;
+	border: 0;
+	padding: 0;
+}
+
+@mixin center() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(- 50%, -50%);
+}
+@mixin center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.visible-sm,
+.visible-sm-block,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md,
+.visible-md-block,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-lg-inline-block,
+.visible-xlg,
+.visible-xlg-block,
+.visible-xlg-inline,
+.visible-xlg-inline-block {
+  display: none !important;
+}
+
+$visibilityBreakPoint1: max-width $max-small;
+$visibilityBreakPoint2: $min-medium $max-medium;
+$visibilityBreakPoint3: $min-large;
+/* $visibilityBreakPoint4: $min-xlarge,'no-query' true; */
+
+@include breakpoint($visibilityBreakPoint1){
+	.visible-sm              { display: block !important; }
+	.visible-sm-block        { display: block !important; }
+	.visible-sm-inline       { display: inline !important; }
+	.visible-sm-inline-block { display: inline-block !important;}
+
+	.hidden-sm               { display: none; }
+}
+
+@include breakpoint($visibilityBreakPoint2){
+	.visible-md              { display: block !important; }
+	.visible-md-block        { display: block !important; }
+	.visible-md-inline       { display: inline !important; }
+	.visible-md-inline-block { display: inline-block !important; }
+
+	.hidden-md               { display: none; }
+}
+
+@include breakpoint($visibilityBreakPoint3){
+	.visible-lg              { display: block !important; }
+	.visible-lg-block        { display: block !important; }
+	.visible-lg-inline       { display: inline !important; }
+	.visible-lg-inline-block { display: inline-block !important; }
+
+	.hidden-lg               { display: none; }
+}
+
+/*
+@include breakpoint($visibilityBreakPoint4){
+	.visible-xlg              { display: block !important; }
+	.visible-xlg-block        { display: block !important; }
+	.visible-xlg-inline       { display: inline !important; }
+	.visible-xlg-inline-block { display: inline-block !important; }
+
+	.hidden-xlg               { display: none; }
+} */
+
+
+.visually-hidden,
+.vh {
+    clip: rect(1px 1px 1px 1px);
+    /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+    position: absolute;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+// inline svg
+@function to-string($value) {
+	@return inspect($value);
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+@function url-encode($string) {
+    $map: (
+      "%": "%25",
+      "<": "%3C",
+      ">": "%3E",
+      " ": "%20",
+      "!": "%21",
+      "*": "%2A",
+      "'": "%27",
+      '"': "%22",
+      "(": "%28",
+      ")": "%29",
+      ";": "%3B",
+      ":": "%3A",
+      "@": "%40",
+      "&": "%26",
+      "=": "%3D",
+      "+": "%2B",
+      "$": "%24",
+      ",": "%2C",
+      "/": "%2F",
+      "?": "%3F",
+      "#": "%23",
+      "[": "%5B",
+      "]": "%5D"
+    );
+    $new: $string;
+    @each $search, $replace in $map {
+      $new: str-replace($new, $search, $replace);
+    }
+    @return $new;
+  }
+
+$assets: '/Static/assets';
+
+
+@function asset($type, $file) {
+@return url($assets + '/' + $type + '/' + $file);
+}
+
+@function image($file) {
+@return asset('images',  $file);
+}
+
+@function font($file) {
+@return asset('fonts',  $file);
+}

@@ -1,0 +1,244 @@
+/* -------------------------------------------------------------------------- *\
+ * Necessary styling for the modal to work
+ * -------------------------------------------------------------------------- */
+
+ .modal-open {
+	// my addition to body element
+	// overflow: hidden;
+}
+
+
+/* -------------------------------------------------------------------------- *\
+ * Styling to make the modal look like a modal
+ * -------------------------------------------------------------------------- */
+
+.modal {
+	display: flex;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 9999;
+	justify-items: center;
+	align-items: center;
+	overflow: auto;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 300ms ease-in-out;
+	pointer-events: none;
+
+	&--visible {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	&--narrow {
+
+		.modal-content {
+			@include breakpoint($large) {
+				width: 890px;
+			}
+		}
+	}
+
+	&--white {
+
+		.modal-body {
+			background-color: $white;
+		}
+	}
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.66);
+}
+
+.modal-content {
+	position: relative;
+	z-index: 99;
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin: 0 auto;
+	margin-top: rem(30);
+	height: calc(100vh - 100px);
+	transition: margin-top 300ms ease-in-out;
+
+	backface-visibility: hidden;
+
+	[role="document"] {
+		height: calc(100vh - 100px);
+		position: relative;
+		@include breakpoint($medium) {
+			height: auto;
+		} 
+	}
+
+	@at-root .modal--visible & {
+		margin-top: rem(0);
+	}
+
+	@include breakpoint($medium) {
+		height: auto;
+	}
+}
+
+/* iPhone X detection */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 2) { 
+	.modal-content,
+	.modal-content [role="document"] {
+		height: calc(85vh - 100px);
+	}
+}
+/* iPhone X detection */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3) { 
+	.modal-content,
+	.modal-content [role="document"] {
+		height: calc(85vh - 100px);
+	}
+}
+
+
+/* -------------------------------------------------------------------------- *\
+ * Extra modal styling to make it shiny
+ * -------------------------------------------------------------------------- */
+
+.modal-content {
+	max-width: calc(100vw - 40px);
+	width: 600px;
+	background-color: #eee;
+
+	@include breakpoint($large) {
+		max-width: calc(90% - 100px);
+		width: calc(90% - 100px);
+	}
+	@include breakpoint($xlarge) {
+		max-width: 1200px;
+		width: 1200px;
+	}
+}
+
+.modal-body {
+	padding: rem(40) rem(20);
+	// max-height: calc(100vh - 64px);
+	background-color: #eee;
+	height: calc(100% - 64px); 
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+
+	@include breakpoint($medium) {
+		padding: rem(40) rem(60);
+		max-height: 80vh;
+		height: auto;
+	}
+}
+
+.modal-overlay {
+	background-color: rgba($charcoal, 0.8);
+}
+
+.modal-title,
+h2.modal-title {
+	margin: 0;
+	display: inline-block;
+	@include font-sizing(rem(18), rem(24), 700);
+
+	@include breakpoint($large) {
+		@include font-sizing(rem(20), rem(24), 700);
+	}
+}
+
+.modal-header {
+	padding: rem(20) rem(30);
+	background: $white;
+	text-align: center;
+
+	position: sticky;
+	top: 0;
+	z-index: 100;
+
+	@include breakpoint($medium) {
+		padding: rem(30);
+	}
+}
+
+.modal-back,
+.modal-close {
+	@include reset-button();
+	position: absolute;
+	display: block;
+	top: rem(15);
+	font-size: rem(12);
+	font-weight: 400;
+	padding: rem(10);
+	background: none;
+	cursor: pointer;
+
+	[class^="icon-"]::before {
+		content: '';
+		display: inline-block;
+		height: rem(20);
+		position: relative;
+		top: -1px;
+		vertical-align: middle;
+		z-index: 1;
+		@include breakpoint($max-small) {
+			display: none;
+		}
+	}
+
+	@include breakpoint($medium) {
+		top: rem(21);
+	}
+}
+.modal-close {
+	right: rem(20);
+
+	@include breakpoint($medium) {
+		right: rem(30);
+	}
+	
+	.icon-close::before {
+		@include inline-svg($icon-x, $orange);
+		margin-left: rem(10);
+		width: rem(20);
+	}
+}
+
+.modal-back {
+	left: rem(20);
+
+	@include breakpoint($medium) {
+		left: rem(30);
+	}
+	
+	
+	.icon-back::before {
+		@include inline-svg($icon-longer-arrow, $orange);
+		margin-right: rem(10);
+		width: rem(25);
+	}
+}
+.modal-cta-holder {
+	text-align: center;
+	margin-bottom: rem(30);
+}
+
+// .icon-text {
+// 	@include breakpoint($max-small) {
+// 		display: inline-block;
+// 		text-indent: -9999px;
+// 	}
+// }

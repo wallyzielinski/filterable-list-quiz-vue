@@ -1,0 +1,18 @@
+/*------------------------------------------
+ Colors
+-------------------------------------------*/
+
+$banana: #ffdb58;
+$orange: orange;
+
+$black: #000;
+$charcoal: #333;
+$white: #fff;
+
+$text-heading: $orange;
+$text-body: $banana;
+
+@if $print {
+	$text-heading: $black !important;
+	$text-body: $black !important;
+}
