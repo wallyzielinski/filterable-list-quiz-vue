@@ -18,7 +18,7 @@ var HERO_filterableList = {
 		if (!_.config.data) {
 			$.ajax({
 				type: 'GET',
-				url: 'https://demo2310644.mockable.io/cars', 
+				url: 'https://demo2703826.mockable.io/cars', 
 				success: function(data) {
 					// Store the result in the session so we don't need to make additonal calls
 					// sessionStorage.setItem('list-data', JSON.stringify(data));
@@ -176,7 +176,7 @@ var HERO_filterableList = {
 				'options': [
 					{
 						'label': '2 Seats',
-						'value': 2
+						'value': 2 
 					},
 					{
 						'label': '4 Seats',

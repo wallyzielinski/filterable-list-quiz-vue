@@ -8,7 +8,7 @@ Skeletor is a directory structure and Gulp workflow designed as an easy starting
 
 Skeletor uses open source tools for its workflow. If you haven't installed these requirements please do so.
 
--   [Python](https://www.python.org/downloads/) (v2.7 at the time of this writing)
+-   [Python](https://www.python.org/downloads/) (v2.7 !important)
 -   [Node.js](https://nodejs.org/en/) (v8.11.2 at the time of this writing)
 
 **NOTE:** Most of our development has occured on PCs. We have tested this on development Macs before, but Macs may have other requirements (like having Xcode) which are not documented here.
@@ -17,6 +17,18 @@ Skeletor uses open source tools for its workflow. If you haven't installed these
 
 -   Clone or Download this repository into your machine.
 -   Open a terminal and install the Node.Js dependencies by running `npm install` in your project directory.
+
+If you are having isues installing, I recommend installing PhantomJS and following the stps outlind here: https://stackoverflow.com/questions/36993962/installing-phantomjs-on-mac
+
+Then install node-sass with this command: sudo node-sass@latest -g
+
+Then you will need python2 in your PATH. Install via homebrew. brew install pyenv
+pyenv install 2.7.18
+pyenv global 2.7.18
+PATH=$(pyenv root)/shims:$PATH
+
+propbably also this 
+echo 'PATH=$(pyenv root)/shims:$PATH' >> ~/.zshrc
 
 ### Configuration
 
