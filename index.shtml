@@ -5,7 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Skeletor Draft</title>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Find Your Ideal EV</title>
 
   <link rel="stylesheet" href="/Static/dist/css/main.css?t=1556557921303" media="screen" />
   <link rel="stylesheet" href="/Static/dist/css/print.css?t=1556557921303" media="print" />
@@ -103,7 +112,7 @@
                   <label :for="'selected-' + car.id" v-html="(selected.indexOf(car.id) == -1) ? 'Compare' : 'Selected'"></label>
             
                   <div class="showroom__image">
-                  <a :href="car.url" ><img v-if="car.image" v-bind:src="car.image" :alt="car.name" :data-ga-car-name="car.name" /></a>
+                  <a :href="car.url" ><img v-if="car.image" v-bind:src="'/Static/assets/images/' + car.image" :alt="car.name" :data-ga-car-name="car.name" /></a>
             
                   <div class="ezev-tag ezev-tag--deal" v-if="car.dealAvailable">
                     <div class="ezev-tag__mask">
@@ -154,7 +163,7 @@
                 
                 <li class="ev-explorer__quiz-cta" v-show="refined.length !== 0">
                   <div class="ev-explorer__quiz-cta--wrap">
-                    <img src="/Static/src/images/ev-quiz_1.png" role="presentation">
+                    <img src="/Static/assets/images/car-outline.png" role="presentation">
                     <div class="ev-explorer__cta-content">
                       <p><strong>Which car is right for me?</strong></p>
                       <p>Answer a few questions and we'll find a car that meets your needs.</p>
@@ -169,7 +178,7 @@
                   <label :for="'selected-' + car.id" v-html="(selected.indexOf(car.id) == -1) ? 'Compare' : 'Selected'"></label>
             
                   <div class="showroom__image">
-                  <a :href="car.url" ><img v-if="car.image" v-bind:src="car.image" :alt="car.name" :data-ga-car-name="car.name" /></a>
+                  <a :href="car.url" ><img v-if="car.image" v-bind:src="'/Static/assets/images/' + car.image" :alt="car.name" :data-ga-car-name="car.name" /></a>
             
                   <div class="ezev-tag ezev-tag--deal" v-if="car.dealAvailable">
                     <div class="ezev-tag__mask">
@@ -248,7 +257,7 @@
                   <tr>
                       <td></td>
                       <th scope="col" class="comparison-chart__vehicle" :aria-label="car.brand + ' ' + car.name" v-for="car in carComparison">
-                        <img v-bind:src="car.image" :alt="car.brand + ' ' + car.name">
+                        <img v-bind:src="'/Static/assets/images/' + car.image" :alt="car.brand + ' ' + car.name">
                         <h4>{{ car.name }}</h4>
                         <p v-html="car.fuelType"></p>
                         

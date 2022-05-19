@@ -58,9 +58,11 @@
     width: 100%;
     // margin-bottom: rem(3); 
     &--50-50 {
-        width: calc(50% - 5px);
-        &:nth-child(even) {
-            margin-right: 0;
+        @include breakpoint($medium) {
+            width: calc(50% - 5px);
+            &:nth-child(even) {
+                margin-right: 0;
+            }
         }
     }
 }

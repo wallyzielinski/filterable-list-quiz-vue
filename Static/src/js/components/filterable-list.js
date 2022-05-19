@@ -137,10 +137,10 @@ var HERO_filterableList = {
 					{
 						'label': 'SUV',
 						'value': 'SUV'
-					// },
-					// {
-					// 	'label': 'Wagon',
-					// 	'value': 'Wagon'
+					},
+					{
+						'label': 'Truck',
+						'value': 'Truck'
 					}
 				]
 			},
@@ -201,32 +201,20 @@ var HERO_filterableList = {
 				},
 				'options': [
 					{
-						'label': '< 10 mi. commute',
-						'value': '10'
-					},
-					{
-						'label': '< 20 mi. commute',
-						'value': '20'
-					},
-					{
-						'label': '< 30 mi. commute',
-						'value': '30'
-					},
-					{
-						'label': '< 40 mi. commute',
-						'value': '40'
+						'label': '< 25 mi. commute',
+						'value': '25'
 					},
 					{
 						'label': '< 50 mi. commute',
 						'value': '50'
 					},
 					{
-						'label': '< 70 mi. commute',
-						'value': '70'
-					},
-					{
 						'label': '< 100 mi. commute',
 						'value': '100'
+					},
+					{
+						'label': '< 200 mi. commute',
+						'value': '200'
 					},
 				]
 			},
@@ -727,10 +715,6 @@ var HERO_filterableList = {
 						});
 					});
 				});
-			},
-			updated: function() {
-				var _ = this;
-				console.log('updated');
 			},
 			watch: {
 				persona: function(newVal, val) {

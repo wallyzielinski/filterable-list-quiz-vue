@@ -9,7 +9,7 @@ Skeletor is a directory structure and Gulp workflow designed as an easy starting
 Skeletor uses open source tools for its workflow. If you haven't installed these requirements please do so.
 
 -   [Python](https://www.python.org/downloads/) (v2.7 !important)
--   [Node.js](https://nodejs.org/en/) (v8.11.2 at the time of this writing)
+-   [Node.js](https://nodejs.org/en/) (v8.11.2 at the time of this writing) NOTE: You MUST use v10 or lower to run this project.
 
 **NOTE:** Most of our development has occured on PCs. We have tested this on development Macs before, but Macs may have other requirements (like having Xcode) which are not documented here.
 

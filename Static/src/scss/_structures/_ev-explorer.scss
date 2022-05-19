@@ -26,6 +26,11 @@
 			font-weight: 400;
 			letter-spacing: rem(1);
 		}
+
+
+		img {
+			max-width: 80px;
+		}
 		
 	}
 	&__cta-content {
@@ -47,6 +52,7 @@
 		p {
 			margin: 0 0 rem(6) 0;
 		}
+
 	}
 
 	[data-splash="true"] {

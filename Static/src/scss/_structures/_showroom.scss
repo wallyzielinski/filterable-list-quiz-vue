@@ -213,10 +213,15 @@
 	}
 
 	&__cars {
-		width: calc(75% - #{rem(15)});
+		@include breakpoint($medium) {
+			width: calc(75% - #{rem(15)});
+		}
 	}
 	&__sidebar {
-		width: calc(25% - #{rem(15)});
+		@include breakpoint($medium) {
+			width: calc(25% - #{rem(15)});
+		}
+
 	}
 
 	&__list ul {
