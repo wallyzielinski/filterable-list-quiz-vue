@@ -1,34 +1,37 @@
 # Vue Code Sample
 
-This is a generic version of the production site: [EZ-EV](https://www.ez-ev.com/showroom). You can run this generic version by following the instalation steps below, but the functionality mirrors production.
+You can see a live demo of this code running on [Netlify](https://filterable-list-vue.netlify.app/).
 
-The project is built on our internal frontend framework called Skeletor. 
+This is a generic version of the production site: [EZ-EV](https://www.ez-ev.com/showroom) (no longer live). You can run this generic version by following the instalation steps below, but the functionality mirrors production.
 
-Skeletor is a directory structure and Gulp workflow designed as an easy starting point for front end development of projects. It is designed to give you a quick and organized way to start developing web apps with best practices in mind, as well as enforce consistency in the frontend architecture used at HERO_digital. 
+The project is built on Hero Digital's internal frontend framework called Skeletor. 
+
+Skeletor is a directory structure and Gulp workflow designed as an easy starting point for front end development of projects. It is designed to give you a quick and organized way to start developing web apps with best practices in mind, as well as enforce consistency in the frontend architecture used at Hero Digital. 
 
 Skeletor uses open source tools for its workflow. If you haven't installed these requirements please do so.
 
 -   [Python](https://www.python.org/downloads/) (v2.7 !important)
--   [Node.js](https://nodejs.org/en/) (v8.11.2 at the time of this writing) NOTE: You MUST use v10 or lower to run this project.
+-   [Node.js](https://nodejs.org/en/) (v8.11.2 at the time of this writing) _NOTE: You MUST use v10 or lower to run this project._
 
-**NOTE:** Most of our development has occured on PCs. We have tested this on development Macs before, but Macs may have other requirements (like having Xcode) which are not documented here.
+**NOTE:** Most of development has occured on PCs. We have tested this on development Macs before, but Macs may have other requirements (like having Xcode) which are not documented here.
 
 ## Installing
 
 -   Clone or Download this repository into your machine.
 -   Open a terminal and install the Node.Js dependencies by running `npm install` in your project directory.
 
-If you are having isues installing, I recommend installing PhantomJS and following the stps outlind here: https://stackoverflow.com/questions/36993962/installing-phantomjs-on-mac
+### Running this locally in 2022
 
-Then install node-sass with this command: sudo node-sass@latest -g
+This code was authored in 2018/2019 and relies on many depracated technologies. For your best chance at success, I recommend taking the following actions: 
 
-Then you will need python2 in your PATH. Install via homebrew. brew install pyenv
-pyenv install 2.7.18
-pyenv global 2.7.18
-PATH=$(pyenv root)/shims:$PATH
-
-propbably also this 
-echo 'PATH=$(pyenv root)/shims:$PATH' >> ~/.zshrc
+1. Install PhantomJS and follow the stps outlined [here](https://stackoverflow.com/questions/36993962/installing-phantomjs-on-mac)
+2. Install node-sass with this command: `sudo node-sass@latest -g`
+3. You will need `python2` in your PATH. Install via homebrew:
+	 - `brew install pyenv`
+	 - `pyenv install 2.7.18`
+	 - `pyenv global 2.7.18`
+	 - `PATH=$(pyenv root)/shims:$PATH`
+	 - `echo 'PATH=$(pyenv root)/shims:$PATH' >> ~/.zshrc`
 
 ### Configuration
 
