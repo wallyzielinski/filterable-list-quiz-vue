@@ -67,13 +67,13 @@
 		@include breakpoint($medium) {
 			width: 100%;
 			padding: 0;
-			margin: 0 0 rem(20);
+			margin: 0 0 rem(20); 
 		}
 	}
 	&__group {
 		// display: inline-block;
 		margin: 0 0 rem(6);
-		background-color: silver;
+		background-color: $silver; 
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -124,8 +124,8 @@
 			width: 100%; 
 			margin: 0;
 			cursor: pointer;
-			box-shadow: inset 0 0 0 0 #3bb2bc;
-			text-shadow: 0 0 20px rgba(0,0,0,0.5);
+			box-shadow: inset 0 0 0 0 $accent;
+			// text-shadow: 0 0 20px rgba(0,0,0,0.5);
 			transition: box-shadow 0.25s ease-in-out;
 			padding: rem(20) rem(8);
 			font-size: rem(9);
@@ -142,21 +142,21 @@
 
 			&.active {
 				&, &:hover {
-					box-shadow: inset 0 0 0 4px #3bb2bc;
+					box-shadow: inset 0 0 0 4px $accent;
 
 					@include breakpoint($medium) {
-						box-shadow: inset 0 0 0 6px #3bb2bc;
+						box-shadow: inset 0 0 0 6px $accent;
 					}
 				}
 				
 			}
 
 			&:focus {
-				outline: 2px solid #3bb2bc;
+				outline: 2px solid $accent;
 			}
 
 			&:hover {
-				box-shadow: inset 0 0 0 3px #3bb2bc;
+				box-shadow: inset 0 0 0 3px $accent;
 			}
 		}
 	}
@@ -255,7 +255,7 @@
 		}
 
 		&[data-selected] {
-			outline: 5px solid #3bb2bc;
+			outline: 5px solid $accent;
 			outline-offset: -5px;
 		}
 
@@ -267,7 +267,7 @@
 		position: relative;
 		padding: rem(30) rem(20);
 		margin: 0 auto;
-		color: gray;
+		color: $midgray;
 		font-size: rem(14);
 		transition: opacity 0.22s ease-in-out;
 
@@ -339,7 +339,7 @@
 
 	&__type-icon {
 		display: inline-block;
-		fill: #3bb2bc;
+		fill: $accent;
 		&--electric {
 			height: rem(17);
 			width: rem(12);
@@ -366,6 +366,7 @@
 			font-weight: 300;
 			font-size: rem(12);
 			text-align: left;
+			color: $charcoal;
 		}
 		td {
 			text-align: right;
@@ -383,8 +384,8 @@
 			th,td {
 				border-top: 1px solid gray;
 				padding-top: rem(25);
-				color: darkslategrey;
-				font-weight: 400;
+				color: $charcoal;
+				font-weight: 400; 
 			}
 			td {
 				font-weight: 800;

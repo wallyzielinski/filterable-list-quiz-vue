@@ -46,7 +46,7 @@
     }
 
     &.error {
-        border-color: #3bb2bc;
+        border-color: $accent;
         background-color: pink;
     }
 }
@@ -122,7 +122,7 @@ input[type='checkbox'] {
         border-color: $black;
     }
 	&:focus+label::before {
-		outline: 2px solid #3bb2bc;
+		outline: 2px solid $accent;
     }
     .js-focus-visible &:focus:not(.focus-visible)+label::before {
         outline: none !important;
@@ -173,7 +173,7 @@ input[type="radio"] {
         border-color: $black;
     }
 	&:focus+label::before {
-        outline: 2px solid #3bb2bc;
+        outline: 2px solid $accent;
         
     }
     .js-focus-visible &:focus:not(.focus-visible)+label::before {
@@ -238,7 +238,7 @@ input[type="radio"] {
         &:disabled {
             color: darkgray;
             &:hover {
-                // border: 1px solid #3bb2bc;
+                // border: 1px solid $accent;
             }
         }
     }

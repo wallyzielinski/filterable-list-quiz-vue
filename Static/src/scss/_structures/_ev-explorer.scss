@@ -38,7 +38,7 @@
 		padding: 0 spacing-inside('sm');
 		text-align: center;
 		font-size: rem(14);
-		color: #3bb2bc;
+		color: $accent;
 
 		@include breakpoint($medium) {
 			margin: 0;
@@ -110,7 +110,7 @@
 	&__progress-fill {
 		// margin: 0 rem(-15);
 		height: 6px;
-		background: linear-gradient(270deg, #3bb2bc 0%, darken(#3bb2bc, 10%) 100%);
+		background: linear-gradient(270deg, $accent 0%, darken($accent, 10%) 100%);
 		position: relative;
 
 		.ev-explorer__progress-empty {
@@ -242,7 +242,7 @@
 		background: $white;
 
 		&[data-selected="true"] {
-			background: #3bb2bc;
+			background: $accent;
 			color: $white;
 		}
 		label { 
@@ -301,7 +301,7 @@
 		padding-right: rem(20);
 	}
 	&__next {
-		border: 1px solid #3bb2bc;
+		border: 1px solid $accent;
 	}
 
 	&__start {

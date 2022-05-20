@@ -99,12 +99,12 @@
 }
 
 .btn-branded {
-	color: $white;
+	color: $black;
 	background: #3bb2bc;
 
 	&:hover:not([disabled]) {
-		background-color: darken(#3bb2bc, 10%);
-		color: $white;
+		background-color: lighten(#3bb2bc, 8%);
+		color: $black;
 	}
 }
 
@@ -127,8 +127,10 @@
 
 .link-btn { 
 	@include reset-button(); 
-	color: lightblue; 
+	color: $charcoal; 
 	background: none; 
+	background: unset;
+	background: initial;
 	font-weight: 600; 
 	font-size: 14px; 
 	font-family: $font-button; 
@@ -136,7 +138,7 @@
 
 	&--arrow {
 		display: inline-block;
-		@include inline-svg($icon-long-arrow, lightblue);
+		@include inline-svg($icon-long-arrow, $accent);
 		width: rem(20);
 		height: rem(10);
 		margin-left: rem(5);

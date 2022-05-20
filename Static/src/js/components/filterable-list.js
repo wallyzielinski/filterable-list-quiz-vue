@@ -12,7 +12,7 @@ var HERO_filterableList = {
 		var _ = this, explorerResults;
 
 		if (_.config.explorerResults) {  
-			explorerResults = _.config.explorerResults;  
+			explorerResults = _.config.explorerResults;
 		}
 
 		if (!_.config.data) {
@@ -893,10 +893,11 @@ var HERO_filterableList = {
 				},
 				// Logic for carComparison 
 				compareCars: function(selected, cars) { 
-					var _ = this; 
+					var _ = this;
  
 					state.compared = cars.filter(function(car) { 
 						return $.inArray(car.id, selected) > -1; 
+						
 					}); 
 				}, 
 				showCompare: function() { 

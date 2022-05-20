@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div id="showroom" data-component="filterableList">
+    <main id="showroom" data-component="filterableList">
       <div class="flex-wrap">
 
         <div class="showroom__personas">
@@ -106,7 +106,7 @@
                 </div>
               </li>
 
-              <li v-for="(car, index) in applyFilters.slice(0, 6)" v-bind:key="car.id" v-bind:data-index="index" class="showroom__vehicle" :data-selected="(selected.indexOf(car.id) >= 0)">
+              <li v-for="(car, index) in applyFilters" v-bind:key="car.id" v-bind:data-index="index" class="showroom__vehicle" :data-selected="(selected.indexOf(car.id) > 0)">
                 <article :class="(selected.length == maxSelected && selected.indexOf(car.id) == -1) ? 'showroom__content showroom__content--disabled' : 'showroom__content'" :key="car.id" :aria-label="car.brand + ' ' + car.name">
                   <input type="checkbox" name="selected" :id="'selected-' + car.id" :value="car.id" v-model="selected" :disabled="(selected.length == maxSelected && selected.indexOf(car.id) == -1)" >
                   <label :for="'selected-' + car.id" v-html="(selected.indexOf(car.id) == -1) ? 'Compare' : 'Selected'"></label>
@@ -160,73 +160,6 @@
                   </table>
                 </article> 
                 </li>
-                
-                <li class="ev-explorer__quiz-cta" v-show="refined.length !== 0">
-                  <div class="ev-explorer__quiz-cta--wrap">
-                    <img src="/Static/assets/images/car-outline.png" role="presentation">
-                    <div class="ev-explorer__cta-content">
-                      <p><strong>Which car is right for me?</strong></p>
-                      <p>Answer a few questions and we'll find a car that meets your needs.</p>
-                    </div>
-                    <button class="btn-primary" data-a11y-dialog-show="evExplorerModal" v-on:click="openExplorer($event)">Find Your Match</button>
-                  </div>
-                </li>
-                
-                <li v-for="(car, index) in applyFilters.slice(6, applyFilters.length)" v-if="index + 6 < maxShown" v-bind:key="car.id" v-bind:data-index="index" class="showroom__vehicle" :data-selected="(selected.indexOf(car.id) >= 0)">
-                <article :class="(selected.length == maxSelected && selected.indexOf(car.id) == -1) ? 'showroom__content showroom__content--disabled' : 'showroom__content'" :key="car.id" :aria-label="car.brand + ' ' + car.name">
-                  <input type="checkbox" name="selected" :id="'selected-' + car.id" :value="car.id" v-model="selected" :disabled="(selected.length == maxSelected && selected.indexOf(car.id) == -1)" >
-                  <label :for="'selected-' + car.id" v-html="(selected.indexOf(car.id) == -1) ? 'Compare' : 'Selected'"></label>
-            
-                  <div class="showroom__image">
-                  <a :href="car.url" ><img v-if="car.image" v-bind:src="'/Static/assets/images/' + car.image" :alt="car.name" :data-ga-car-name="car.name" /></a>
-            
-                  <div class="ezev-tag ezev-tag--deal" v-if="car.dealAvailable">
-                    <div class="ezev-tag__mask">
-                    <span class="ezev-tag__icon ezev-tag__icon--about-ezev"></span>
-                    <span class="ezev-tag__text">
-                      Deal Available
-                    </span>
-                    </div>
-                  </div>
-                  </div>
-        
-                  <div class="showroom__heading">
-                  <h3 class="showroom__name">
-                    <a :href="car.url" :data-ga-car-name="car.name">{{ car.name }}</a>
-                  </h3>
-                  <span class="showroom__icon">
-                    <svg class="showroom__type-icon showroom__type-icon--electric" role="presentation">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" v-bind="{'xlink:href':'/Static/assets/images/sprites/vector-spritesheet.svg#icon-car-type-electric'}"></use>
-                    </svg>
-                    <svg class="showroom__type-icon showroom__type-icon--hybrid" role="presentation" v-if="car.fuelType !== 'Electric Vehicle'">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" v-bind="{'xlink:href':'/Static/assets/images/sprites/vector-spritesheet.svg#icon-car-type-hybrid'}"></use>
-                    </svg>
-                  </span>
-                  </div>
-        
-                  <div class="showroom__type" v-html="car.fuelType"></div>
-            
-                  <table class="showroom__stats-table">
-                  <tr v-if="car.electricRange">
-                    <th>Electric Range</th>
-                    <td>{{ car.electricRange | distanceShorthand }}</td>
-                  </tr>
-                  <tr v-if="car.totalRange">
-                    <th>Total Range</th>
-                    <td>{{ car.totalRange | distanceShorthand }}</td>
-                  </tr>
-                  <tr v-if="car.annualGasSavings">
-                    <th>Yearly Gas Savings*</th>
-                    <td>{{ car.annualGasSavings | currency }}</td>
-                  </tr>
-                  <tr>
-                    <th>MSRP After Federal Incentives</th>
-                    <td class="showroom__price">{{ car.price | currency }}</td>
-                  </tr>
-                  </table>
-                </article>
-                </li>
-
             </ul>
 
             <div class="showroom__load-more" v-if="refined.length >= maxShown">
@@ -558,32 +491,32 @@
         
         </div>
 		
-		<!-- filter sidebar -->
-		<div id="filter-sidebar" class="showroom__sidebar">
-			<fieldset v-for="filter in filterOptions" class=" filter-sidebar-fieldset">
-			<div class="accordion__tab">
-				<legend class="filter-sidebar-legend">{{ filter.label }}</legend>
+        <!-- filter sidebar -->
+        <div id="filter-sidebar" class="showroom__sidebar">
+          <fieldset v-for="filter in filterOptions" class=" filter-sidebar-fieldset">
+          <div class="accordion__tab">
+            <legend class="filter-sidebar-legend">{{ filter.label }}</legend>
 
-				<div class="filter-sidebar-applied-filters">
-				<span class="filter-sidebar-applied" v-for="(tag, index) in filterTags" v-if="tag.type == filter.name">
-									{{ tag.label }}<span class="comma">, </span>
-				</span>
-				</div>
-			</div>
+            <div class="filter-sidebar-applied-filters">
+            <span class="filter-sidebar-applied" v-for="(tag, index) in filterTags" v-if="tag.type == filter.name">
+                      {{ tag.label }}<span class="comma">, </span>
+            </span>
+            </div>
+          </div>
 
-			<div class="accordion__panel filter-sidebar-filter-options">
-				<div v-for="(option, o) in filter.options" :class="(filter.type == 'checkbox') ? 'checkbox-wrap checkbox-wrap--50-50' : ''">
-				<input :type="filter.type" v-model="filterBy[filter.name]" :name="filter.name" :id="filter.name + '-' + o" :value="option.value">
-				<label :for="filter.name + '-' + o">{{ option.label }}</label>
-				</div>
-			</div>
+          <div class="accordion__panel filter-sidebar-filter-options">
+            <div v-for="(option, o) in filter.options" :class="(filter.type == 'checkbox') ? 'checkbox-wrap checkbox-wrap--50-50' : ''">
+            <input :type="filter.type" v-model="filterBy[filter.name]" :name="filter.name" :id="filter.name + '-' + o" :value="option.value">
+            <label :for="filter.name + '-' + o">{{ option.label }}</label>
+            </div>
+          </div>
 
-			</fieldset>
-			<!-- v-for -->
-		</div>
+          </fieldset>
+          <!-- v-for -->
+        </div>
       </div>
 
-    </div>
+    </main>
 
     
 
