@@ -21,7 +21,7 @@ var HERO_filterableList = {
 				url: 'https://demo2703826.mockable.io/cars', 
 				success: function(data) {
 					// Store the result in the session so we don't need to make additonal calls
-					// sessionStorage.setItem('list-data', JSON.stringify(data));
+					sessionStorage.setItem('list-data', JSON.stringify(data));
 					
 					_.setup(data, explorerResults); 
 				},
@@ -46,7 +46,6 @@ var HERO_filterableList = {
 		if (qstring !== '') {
 			// create a JSON object from thr querystring
 			qstring.forEach(function(item) {
-				// console.log('item', item);
 				item = item.split('=');
 				query[item[0]] = decodeURIComponent(item[1]) || '';
 			});
@@ -68,7 +67,6 @@ var HERO_filterableList = {
 		// .split(',') is used for multi-select or array values
 		// .map is used to convert from a String to a Number
 		if (!__.isEmpty(query)) {
-			// console.log('yeah, we got a query');
 			if (query.brand) {
 				filterBy.brand = query.brand.split(',');
 			}
@@ -429,7 +427,6 @@ var HERO_filterableList = {
  
 					if (_.currentQuestion > 0) { 
 						var currentFilter = __.findWhere(_.questions, {id: _.currentQuestion}).filter; 
-						// console.log('theRemaining()'); 
  
 						// For each type of filer, check if it's set and if so, apply the filter. 
 						for (attr in _.exploreBy) { 
@@ -465,8 +462,6 @@ var HERO_filterableList = {
 					var input = $('input[name="question-' + _.currentQuestion + '"]:checked'); 
  
 					if (input.val()) { 
-						// _.gaExplorerbutton(e); 
- 
 						_.valid = true; 
 						_.next(); 
 					} else { 
@@ -487,10 +482,7 @@ var HERO_filterableList = {
 					} 
 				}, 
 				skip: function(e) { 
-					var _ = this; 
-					// console.log('skip page'); 
-					 
-					// _.gaExplorerbutton(e); 
+					var _ = this;
 				 
 					_.clearSelection(); 
  
@@ -500,7 +492,7 @@ var HERO_filterableList = {
 				}, 
 				next: function() { 
 					var _ = this; 
-					// console.log('next page', _.currentQuestion); 
+
 					if (_.currentQuestion < _.questions.length) { 
 						_.goto(_.currentQuestion + 1); 
 					} else if (_.currentQuestion == _.questions.length) { 
@@ -509,9 +501,8 @@ var HERO_filterableList = {
 					 
 				}, 
 				prev: function() { 
-					var _ = this; 
-					// console.log('prev page'); 
- 
+					var _ = this;
+
 					_.clearSelection(); 
  
 					if (_.progress == 100) { 
@@ -522,7 +513,6 @@ var HERO_filterableList = {
  
 					 
 					setTimeout(function() { 
-						// console.log('focus: ', $('.ev-explorer__question')); 
 						$('.ev-explorer__question').focus(); 
 					}, 300); 
  
@@ -547,7 +537,6 @@ var HERO_filterableList = {
 						_.progress = newQuestion.progress; 
  
 						setTimeout(function() { 
-							// console.log('focus: ', $('.ev-explorer__question')); 
 							$('.ev-explorer__question').focus(); 
 						}, 300) 
 					} else { 
@@ -591,8 +580,7 @@ var HERO_filterableList = {
 										} 
 									}); 
  
-									evExplorerResults.profileData[key] = evExplorerResults.profileData[key].join(', '); 
-									// console.log(evExplorerResults.profileData[key]) 
+									evExplorerResults.profileData[key] = evExplorerResults.profileData[key].join(', ');
 								} 
 								 
 							} else if (key !== 'fuelType') { 
@@ -600,14 +588,10 @@ var HERO_filterableList = {
  
 								if (!__.isUndefined(choice) && !__.isNull(choice)) { 
 									evExplorerResults.profileData[key] = choice.label; 
-									// console.log(evExplorerResults.profileData[key]) 
 								} 
 							} 
 						} 
- 
-					} 
-					 
-					// console.log(JSON.stringify(evExplorerResults)); 
+					}
  
 					return JSON.stringify(evExplorerResults); 
 				}, 
@@ -627,13 +611,10 @@ var HERO_filterableList = {
 				}, 
 				getRemaining: function(filter, value) { 
 					var _ = this; 
-					// console.log('getRemaining: ', filter, value); 
  
 					var remaining = _.remainingCars;  
  
 					remaining = remaining.filter(function(car) { 
-						// console.log(car[filter], value); 
-						// console.log(filter); 
 						if (filter == 'budget') { 
 							var max = value.split(' - '); 
 							var min = max.pop(); 
@@ -657,7 +638,6 @@ var HERO_filterableList = {
  
 				reduceThis: function(type, value) { 
 					var _ = this; 
-					// console.log('reduceThis', type, value); 
 					 
 					state.explorerList = state.explorerList.filter(function(car) { 
 						var max, min; 
@@ -897,7 +877,6 @@ var HERO_filterableList = {
  
 					state.compared = cars.filter(function(car) { 
 						return $.inArray(car.id, selected) > -1; 
-						
 					}); 
 				}, 
 				showCompare: function() { 
@@ -905,8 +884,6 @@ var HERO_filterableList = {
 				}, 
 				filterThis: function(type, value) {
 					var _ = this;
-
-					console.log('filterThis', type, value);
 					
 					state.filteredList = state.filteredList.filter(function(car) {
 						var max, min;
@@ -933,7 +910,6 @@ var HERO_filterableList = {
 				// Clear a single filter (through pills)
 				removeFilter: function(e) {
 					var _ = this,
-						// el = $(e.path[0]),
 						el = $(e.target),
 						type = el.attr('data-filter-type'),
 						value = el.attr('data-filter-value'),
@@ -991,6 +967,7 @@ var HERO_filterableList = {
 					if (!hashOnly) {
 						querystring = window.location.pathname;
 					}
+
 					// create the querystring from these values
 					if (!$.isEmptyObject(parameters)) {
 						querystring += '#' + $.param(parameters);
@@ -1006,11 +983,7 @@ var HERO_filterableList = {
 				},
 				openExplorer: function(e) { 
 					var _ = this; 
-					 
-					// _.explorerCurrentQuestion = 0; 
-					// _.explorerProgress = 0; 
- 
-					// console.log(_.$children[0]); 
+
 					_.$children[0].currentQuestion = 0; 
 					_.$children[0].progress = 0; 
 					_.$children[0].exploreBy = $.extend(true,{},filterByData); 

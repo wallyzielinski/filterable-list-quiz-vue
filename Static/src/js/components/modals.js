@@ -11,7 +11,6 @@ var HERO_modals = {
 		
 		if ($('.modal').length > 0) {
 			$('.modal').each(function(i, item) {
-				// console.log(item);
 				_.initialize(item);
 			});
 		}
@@ -20,8 +19,6 @@ var HERO_modals = {
 	initialize: function(item) {
 		var _ = this;
 		var modalName = $(item).attr('id');
-
-		// console.log('modal init: ', modalName);
 		
 		window[modalName] = new A11yDialog(item).on('show', function(dialogEl, event) {
 
@@ -47,8 +44,6 @@ var HERO_modals = {
 		}).on('hide', function(dialogEl, event) {
 			
 			if (modalName == 'signInModal') {
-				console.log('signin Modal closed');
-
 				localStorage.removeItem('redirectURL');
 			}
 
@@ -67,8 +62,6 @@ var HERO_modals = {
 			_.toggleTabIndex(dialogEl, false);
 		});
 
-		// console.log(window[modalName]);
-		
 		_.toggleTabIndex(item, true);
 	},
 
