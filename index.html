@@ -16,6 +16,10 @@
 
   <title>Find Your Ideal EV</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/Static/dist/css/main.css?t=1556557921303" media="screen" />
   <link rel="stylesheet" href="/Static/dist/css/print.css?t=1556557921303" media="print" />
 </head>
@@ -30,6 +34,7 @@
     </div>
 
     <main id="showroom" data-component="filterableList">
+
       <div class="flex-wrap">
 
         <div class="showroom__personas">
@@ -506,8 +511,8 @@
 
           <div class="accordion__panel filter-sidebar-filter-options">
             <div v-for="(option, o) in filter.options" :class="(filter.type == 'checkbox') ? 'checkbox-wrap checkbox-wrap--50-50' : ''">
-            <input :type="filter.type" v-model="filterBy[filter.name]" :name="filter.name" :id="filter.name + '-' + o" :value="option.value">
-            <label :for="filter.name + '-' + o">{{ option.label }}</label>
+              <input :type="filter.type" v-model="filterBy[filter.name]" :name="filter.name" :id="filter.name + '-' + o" :value="option.value">
+              <label :for="filter.name + '-' + o">{{ option.label }}</label>
             </div>
           </div>
 

@@ -3,8 +3,8 @@
 
 var HERO_filterableList = {
 	config: {
-		explorerResults: sessionStorage.getItem('ev-explorer-results'), 
 		init: false,
+		explorerResults: sessionStorage.getItem('ev-explorer-results'), 
 		data: sessionStorage.getItem('list-data')
 	},
 
@@ -22,7 +22,6 @@ var HERO_filterableList = {
 				success: function(data) {
 					// Store the result in the session so we don't need to make additonal calls
 					sessionStorage.setItem('list-data', JSON.stringify(data));
-					
 					_.setup(data, explorerResults); 
 				},
 				error: function() {
@@ -675,7 +674,6 @@ var HERO_filterableList = {
 			},
 			mounted: function() {
 				var _ = this;
-				console.log('mounted');
 
 				// When Vue is initialized and ready to go, hide loading spinner and show component
 				this.$nextTick(function() {
