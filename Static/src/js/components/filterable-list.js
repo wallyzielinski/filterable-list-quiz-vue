@@ -18,7 +18,7 @@ var HERO_filterableList = {
 		if (!_.config.data) {
 			$.ajax({
 				type: 'GET',
-				url: 'https://demo2703826.mockable.io/cars', 
+				url: 'https://api.mockfly.dev/mocks/5d06445a-5fc7-4723-8938-1abb278ad4bb/cars', 
 				success: function(data) {
 					// Store the result in the session so we don't need to make additonal calls
 					sessionStorage.setItem('list-data', JSON.stringify(data));
