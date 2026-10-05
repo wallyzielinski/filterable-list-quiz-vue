@@ -1,10 +1,10 @@
 var gulp = require('gulp'),
-  sass = require('gulp-sass')(require('sass')),
-  sassGlob = require('gulp-sass-glob')
-;((sourcemaps = require('gulp-sourcemaps')),
-  (postcss = require('gulp-postcss')),
-  (autoprefixer = require('autoprefixer')),
-  (cssnano = require('cssnano')))
+  sass = require('sass'),
+  sassGlob = require('gulp-sass-glob'),
+  sourcemaps = require('gulp-sourcemaps'),
+  postcss = require('gulp-postcss'),
+  autoprefixer = require('autoprefixer'),
+  cssnano = require('cssnano')
 
 var sassSettings = {
   outputStyle: 'expanded',
