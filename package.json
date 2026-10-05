@@ -20,6 +20,7 @@
     "gulp-concat": "2.6.1",
     "gulp-postcss": "7.0.1",
     "gulp-sass-glob": "1.1.x",
+    "gulp-dart-sass": "1.1.x",
     "sass": "1.x.x",
     "gulp-sourcemaps": "2.6.4",
     "gulp-svg-sprite": "^1.5.0",
