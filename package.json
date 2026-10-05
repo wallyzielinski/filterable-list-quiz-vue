@@ -1,8 +1,8 @@
 {
-  "name": "skeletor2k18",
-  "version": "0.3.0",
+  "name": "vue-filterable-list",
+  "version": "1.0.0",
   "description": "Set of Frontend Dev-focused build tools to streamline and maintain consistent code bases in fast-paced agency settings",
-  "author": "HERO_digital",
+  "author": "Walt Zielinski",
   "browserslist": [
     "last 3 versions",
     "> .5%",
@@ -20,7 +20,7 @@
     "gulp-concat": "2.6.1",
     "gulp-inline-svg": "1.0.x",
     "gulp-postcss": "7.0.1",
-    "gulp-sass": "3.1.0",
+    "sass": "1.x.x",
     "gulp-sourcemaps": "2.6.4",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-svgo": "^2.2.1",
