@@ -1,26 +1,27 @@
 var gulp = require('gulp'),
-  sass = require('sass'),
-  sourcemaps = require('gulp-sourcemaps'),
-  postcss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer'),
-  cssnano = require('cssnano')
+  sass = require('gulp-sass')(require('sass')),
+  sassGlob = require('gulp-sass-glob')
+;((sourcemaps = require('gulp-sourcemaps')),
+  (postcss = require('gulp-postcss')),
+  (autoprefixer = require('autoprefixer')),
+  (cssnano = require('cssnano')))
 
 var sassSettings = {
-  outputStyle: 'nested',
-  importer: require('node-sass-globbing'),
+  outputStyle: 'expanded',
   includePaths: ['./node_modules/breakpoint-sass/stylesheets']
 }
 
 var postcssPlugins = []
 
 if (global.skltr.postCssDev == true) {
-  postCssPlugins = [autoprefixer, cssnano]
+  postcssPlugins = [autoprefixer, cssnano]
 }
 
 gulp.task('sass:watch:bs', function () {
   return gulp
     .src(`${global.skltr.sass}/main.scss`)
     .pipe(sourcemaps.init())
+    .pipe(sassGlob())
     .pipe(sass(sassSettings).on('error', sass.logError))
     .pipe(postcss(postcssPlugins))
     .pipe(sourcemaps.write('./'))
@@ -32,6 +33,7 @@ gulp.task('sass:watch', function () {
   return gulp
     .src(`${global.skltr.sass}/main.scss`)
     .pipe(sourcemaps.init())
+    .pipe(sassGlob())
     .pipe(sass(sassSettings).on('error', sass.logError))
     .pipe(postcss(postcssPlugins))
     .pipe(sourcemaps.write('./'))
@@ -42,6 +44,7 @@ gulp.task('sass', function () {
   return gulp
     .src(`${global.skltr.sass}/*.scss`)
     .pipe(sourcemaps.init())
+    .pipe(sassGlob())
     .pipe(sass(sassSettings).on('error', sass.logError))
     .pipe(postcss([autoprefixer, cssnano]))
     .pipe(sourcemaps.write('./'))
